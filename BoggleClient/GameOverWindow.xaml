@@ -1,0 +1,35 @@
+﻿<Window x:Class="BoggleClientView.GameOverWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GameOverWindow" Height="299" Width="1027">
+    <Grid>
+        <Label x:Name="GameOverTitle" Content="The Game Has Ended" HorizontalAlignment="Left" Margin="393,16,0,0" VerticalAlignment="Top" Width="160" FontSize="15" FontWeight="Bold"/>
+        <Label x:Name="WinnerOrLoserTitle" Content="You are the:" HorizontalAlignment="Left" Margin="393,46,0,0" VerticalAlignment="Top" Width="79"/>
+        <Label x:Name="WinnerLoserDisplay" Content="" HorizontalAlignment="Left" Margin="477,46,0,0" VerticalAlignment="Top" Width="86" FontWeight="Bold" FontSize="14"/>
+        <Label x:Name="WordsPlayedTitle" Content="Number Of Legal Words You Have Played:" HorizontalAlignment="Left" Margin="0,77,0,0" VerticalAlignment="Top" Width="249" FontWeight="Bold"/>
+        <Label x:Name="NumberOfWordsDisplay" Content="" HorizontalAlignment="Left" Margin="249,77,0,0" VerticalAlignment="Top" Width="52"/>
+        <Label x:Name="WordsOpponentPlayed" Content="Number Of Legal Words Your Opponent Played:" HorizontalAlignment="Left" Margin="634,77,0,0" VerticalAlignment="Top" Width="287" FontWeight="Bold"/>
+        <Label x:Name="OpponentsNumberWordsDisplay" Content="" HorizontalAlignment="Left" Margin="904,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.342,0.654" Width="45"/>
+        <Label x:Name="WordsPlayedTitle1" Content="The words you have played:" HorizontalAlignment="Left" Margin="0,103,0,0" VerticalAlignment="Top" Width="160"/>
+        <Label x:Name="ListOfWordsPlayed" Content="" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="140" Height="135"/>
+        <Label x:Name="OpponentWordsPlayed" Content="The words your opponent played:" HorizontalAlignment="Left" Margin="634,103,0,0" VerticalAlignment="Top" Width="198"/>
+        <Label x:Name="ListOfOpponentWordsPlayed" Content="" HorizontalAlignment="Left" Margin="634,134,0,0" VerticalAlignment="Top" Width="140" Height="135"/>
+        <Label x:Name="WordsInCommon" Content="Words Played In Common" HorizontalAlignment="Left" Margin="404,77,0,0" VerticalAlignment="Top" Width="159" FontWeight="Bold"/>
+        <Label x:Name="WordsInCommonDisplay" Content="" HorizontalAlignment="Left" Margin="404,108,0,0" VerticalAlignment="Top" Width="149" Height="161"/>
+        <Label x:Name="WordsInCommonCount" Content="" HorizontalAlignment="Left" Margin="553,77,0,0" VerticalAlignment="Top" Width="46"/>
+        <Label x:Name="IllegalWordsDIsplay" Content="Illegal Words Played:" HorizontalAlignment="Left" Margin="175,103,0,0" VerticalAlignment="Top" Width="121"/>
+        <Label x:Name="IllegalWordsPlayed" Content="" HorizontalAlignment="Left" Margin="175,134,0,0" VerticalAlignment="Top" Width="140" Height="135"/>
+        <Label x:Name="IllegalWordsDIsplay_Copy" Content="Illegal Words Played:" HorizontalAlignment="Left" Margin="876,103,0,0" VerticalAlignment="Top" Width="121"/>
+        <Label x:Name="OpponentsIllegalWordsPlayed" Content="" HorizontalAlignment="Left" Margin="876,134,0,0" VerticalAlignment="Top" Width="140" Height="135"/>
+        <Button x:Name="PlayAgain" Content="Play Again" HorizontalAlignment="Left" Margin="71,16,0,0" VerticalAlignment="Top" Width="89" Height="56" Click="PlayAgain_Click" FontWeight="Bold" FontSize="14">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="CloseButton" Content="Close" HorizontalAlignment="Left" Margin="841,16,0,0" VerticalAlignment="Top" Width="80" Height="58" Click="CloseButton_Click" FontSize="14" FontWeight="Bold">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+    </Grid>
+</Window>

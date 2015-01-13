@@ -1,0 +1,20 @@
+﻿BoggleClient
+
+
+winexe
+C#
+.cs
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleClient\obj\Debug\
+BoggleClientView
+none
+false
+DEBUG;TRACE
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleClient\App.xaml
+31265754513
+
+7291347222
+16945769132
+GameOverWindow.xaml;GameWindow.xaml;MainWindow.xaml;
+
+False
+
