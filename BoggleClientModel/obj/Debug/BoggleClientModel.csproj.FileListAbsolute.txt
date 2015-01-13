@@ -1,0 +1,7 @@
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleClientModel\bin\Debug\BoggleClientModel.dll
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleClientModel\bin\Debug\BoggleClientModel.pdb
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleClientModel\bin\Debug\StringSocket.dll
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleClientModel\bin\Debug\StringSocket.pdb
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleClientModel\obj\Debug\BoggleClientModel.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleClientModel\obj\Debug\BoggleClientModel.dll
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleClientModel\obj\Debug\BoggleClientModel.pdb
