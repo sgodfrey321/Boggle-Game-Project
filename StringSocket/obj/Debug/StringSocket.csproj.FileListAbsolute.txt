@@ -1,0 +1,4 @@
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\StringSocket\bin\Debug\StringSocket.dll
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\StringSocket\bin\Debug\StringSocket.pdb
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\StringSocket\obj\Debug\StringSocket.dll
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\StringSocket\obj\Debug\StringSocket.pdb
