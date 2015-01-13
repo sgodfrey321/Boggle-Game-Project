@@ -1,0 +1,28 @@
+﻿Hello and welcome the boggle server created by Sam and Fahad.
+
+PS8:
+When doing this project we felt that the first transmission of data should always be the name, this allowed us to build the data structures pretty early. We also decided that the next stuff
+to come along would be dealing with the game itself, ie word plays. This way we could handle any invalid commands or closing of the socket in one method.
+We build a Boggle Game Class to handle the scoring and the game itself, this was nice because it let us not be connected to the server. The timer was handled on the server side, we just
+decided to spin off a new thread for each new game that was started. We felt this was a little better then putting in the Boggle Game class as it seemed to meet the specs a little bit better,
+however putting the timer in the boggle game class would have been much easier.
+
+PS9:
+WOrking on project 9 was super fun, using WPF was a interesting and complex process. For this project we decided that we wanted to get everything working first before we started
+working on the GUI; we decided that a correct implementation was much more important that making are GUI look pretty.
+
+The way we set this project up was to have a BoggleClient class that handled all of the string socket stuff and parsing the game information. We have 5 or 6 actions that communicate
+to the main GUI and these actions are all based upon messages that the BoggleClient has recieved. 
+
+The main GUI consists of three seperate windows; one for the connection proccess, one for the gameplay and one for the gameover window.
+The connection window asks for a IPAdress or HostName, and will pop up a message box if the connection is not established telling you that the destenation was incorrect. The
+other label is for the name of the player.
+
+The game window takes care of the game play, we set up and display the boggle board and have a text box for inputing words. We also have labels that display the time, your
+opponents score, your score and the words you have played.
+
+The game over window pops up when either the time has run out or your opponent has quit the game, either on purpose or not. This game window displays the words both you
+and your opponent have played (both legal and illegal) and the words you have in commmon. We also have the option to close the game or reconnect which will take you back
+to the connection window.
+
+We decided not to to any text handlers, ie pressing enter in a text box to play a word because to be honest we just ran out of time (it was the least of our worries).

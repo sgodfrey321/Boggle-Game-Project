@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DatabaseUpdater;
+
+namespace HTMLwriter
+{
+    public class HTMLCreator
+    {
+        private DatabaseTool dbTool;
+        public HTMLCreator()
+        {
+            dbTool = new DatabaseTool();
+        }
+        public string webpageRequestResponse()
+        {
+            string response = "HTTP/1.1 200 OK\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n";
+            return response;
+        }
+        public string emptyLineSend()
+        {
+            string emptyLine = "\r\n";
+            return emptyLine;
+        }
+        public string sendHTML()
+        {
+            string htmlToSend = "<h1>Hello and Welcome the Boggle Server Created By Sam and Fahad!</h1>";
+            return htmlToSend;
+        }
+        public string pageRequested(string pageRequested)
+        {
+            string htmlToSend = "<p>You are looking at a list of all " + pageRequested + " in the boggle database</h>";
+            return htmlToSend;
+        }
+        public string sendPlayerList()
+        {
+            Dictionary<string, GameWonLossTie> players = dbTool.returnPlayers();
+            string htmlToSend = string.Empty;
+            foreach (var item in players)
+            {
+                htmlToSend += ("<p><a href=\"http://localhost:2500/games?players=" + item.Key + "\"> " + item.Key + "</a>" + "     Games Won : " + item.Value.gamesWon
+                    + "      Games Lost : " + item.Value.gamesLost + "        Games Tied : " + item.Value.gamesTied + "</p>");
+            }
+            return htmlToSend;
+        }
+        public string gamesByPlayer(string player)
+        {
+            Dictionary<int, GameInformation> gamesPlayedByPlayer = dbTool.returnGamesOfPlayer(player);
+            string htmlToSend = string.Empty;
+            foreach (var item in gamesPlayedByPlayer)
+            {
+                htmlToSend += "<p> " + "<a href=\"http://localhost:2500/games?gameID=" + item.Key + "\">" + item.Key + "</a>" + " Outcome of Game: " + item.Value.didYouWin + " Your Score: " + item.Value.playerScore + " Name Of Opponent: " + item.Value.nameOfOpponent + " Oponnents Score : "
+                    + item.Value.opponentScore + " Time Game Was Played: " + item.Value.dateOfGame + "</p>";
+            }
+            return htmlToSend;
+        }
+    }
+}

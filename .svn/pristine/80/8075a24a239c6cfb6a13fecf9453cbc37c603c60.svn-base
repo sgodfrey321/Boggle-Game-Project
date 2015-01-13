@@ -1,0 +1,170 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
+using BoggleGameClass;
+
+namespace DatabaseUpdater
+{
+    public class DatabaseTool
+    {
+        private const string connectionPath = "server=atr.eng.utah.edu;database=cs3500_samuelg;uid=cs3500_samuelg;password=508146563";
+        private string player1 { get; set; }
+        private int player1Score { get; set; }
+        private int player2Score { get; set; }
+        private string player2 { get; set; }
+        private BoggleGame game { get; set; }
+        private string timeOfGame { get; set; }
+        private List<string> player1WordsPlayed { get; set; }
+        private IEnumerable<string> player1AllWords { get; set; }
+        private List<string> player2WordsPlayed { get; set; }
+        private IEnumerable<string> player2AllWords { get; set; }
+        private List<string> player1IllegalWordsPlayed { get; set; }
+        private List<string> player2IllegalWordsPlayed { get; set; }
+        private List<string> wordsInCommon { get; set; }
+        private string gameBoard { get; set; }
+        private DateTime now { get; set; }
+        private string timeString { get; set; }
+        public DatabaseTool(BoggleGame currentGame, string time)
+        {
+            now = DateTime.Now;
+            timeString = "'" + now.Ticks.ToString() + "'";
+            game = currentGame;
+            gameBoard = game.displayBoard();
+            gameBoard = "'" + gameBoard + "'";
+            player1 = currentGame.player1.playerName;
+            player1 = "'" + player1 + "'";
+            player1Score = currentGame.player1.playerScore;
+            player2 = currentGame.player2.playerName;
+            player2 = "'" + player2 + "'";
+            player2Score = currentGame.player2.playerScore;
+            timeOfGame = "'" + time + "'";
+            player1WordsPlayed = currentGame.player1.wordsPlayed.ToList();
+            player1IllegalWordsPlayed = currentGame.player1.illegalWordsPlayed.ToList();
+            player2WordsPlayed = currentGame.player2.wordsPlayed.ToList();
+            player2IllegalWordsPlayed = currentGame.player2.illegalWordsPlayed.ToList();
+            wordsInCommon = currentGame.wordsInCommon.ToList();
+
+            player1AllWords = player1WordsPlayed.Union(player1IllegalWordsPlayed);
+            player2AllWords = player2WordsPlayed.Union(player2IllegalWordsPlayed);
+
+            addGameInfo();
+        }
+        private void addGameInfo()
+        {
+            HashSet<string> playersInDB = new HashSet<string>();
+            using (MySqlConnection conn = new MySqlConnection(connectionPath))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand command = conn.CreateCommand();
+                    command.CommandText = "select * from PlayerList";
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string change = "'" + reader["playerName"].ToString() + "'";
+                            playersInDB.Add(change);
+                        }
+                    }
+
+                    int id = addPlayer(player1, playersInDB, conn);
+                    int id2 = addPlayer(player2, playersInDB, conn);
+
+                    command.CommandText = "INSERT INTO GameInformation " +
+                       "(gameBoard, player1, player1Score, player2, player2Score, timeOfGame, timeGameEnded)"
+                       + "VALUES (" + gameBoard + ", " + id + ", " + player1Score + ", " + id2 + ", " + player2Score + ", " + timeOfGame + ", "
+                       + timeString + ")";
+                    using (MySqlDataReader reader = command.ExecuteReader()) { }
+
+                    int currentGameID = getGameID(timeString, conn);
+
+                    foreach (var item in player1AllWords)
+                    {
+                        if (!player1IllegalWordsPlayed.Contains(item))
+                        {
+                            command.CommandText = "insert into WordsTable " +
+                                           "(idFromGame, wordsPlayed, playersWhoPlayedWord, isIllegal)"
+                                           + "values (" + currentGameID + ", " + item + ", " + player1 + ", " + "'false')";
+                            using (MySqlDataReader reader = command.ExecuteReader()) { }
+
+                        }
+                        else
+                        {
+                            command.CommandText = "insert into WordsTable " +
+                           "(idFromGame, wordsPlayed, playersWhoPlayedWord, isIllegal)"
+                           + "values (" + currentGameID + ", " + item + ", " + player1 + ", " + "'true')";
+                            using (MySqlDataReader reader = command.ExecuteReader()) { }
+                        }
+                    }
+                                           
+                    foreach (var item in player2AllWords)
+                    {
+                        if (!player2IllegalWordsPlayed.Contains(item))
+                        {
+                            command.CommandText = "insert into WordsTable " +
+                                           "(idFromGame, wordsPlayed, playersWhoPlayedWord, isIllegal)"
+                                           + "values (" + currentGameID + ", " + item + ", " + player2 + ", " + "'false')";
+                            using (MySqlDataReader reader = command.ExecuteReader()) { }
+                        }
+                        else
+                        {
+                            command.CommandText = "insert into WordsTable " +
+                           "(idFromGame, wordsPlayed, playersWhoPlayedWord, isIllegal)"
+                           + "values (" + currentGameID + ", " + item + ", " + player2 + ", " + "'true')";
+                            using (MySqlDataReader reader = command.ExecuteReader()) { }
+                        }
+                    }
+                    foreach (var item in wordsInCommon)
+                    {
+                        command.CommandText = "insert into WordsTable " +
+                                           "(idFromGame, wordsPlayed, playersWhoPlayedWord, isIllegal)"
+                                           + "values (" + currentGameID + ", " + item + ", " + "'Both'" + ", " + "'false')";
+                        using (MySqlDataReader reader = command.ExecuteReader()) { }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }
+        public int addPlayer(string playerName, HashSet<string> playerList, MySqlConnection conn)
+        {
+            int id = 0;
+            MySqlCommand command = conn.CreateCommand();
+            if (!playerList.Contains(playerName))
+            {
+                command.CommandText = "insert into PlayerList (playerName) values (" + playerName + ")";
+                using (MySqlDataReader reader = command.ExecuteReader()) { }
+            }
+            command.CommandText = "select idPlayerList from PlayerList where playerName = " + playerName;
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    int.TryParse(reader["idPlayerList"].ToString(), out id);
+                }
+            }
+            return id;
+        }
+        private int getGameID(string timeString, MySqlConnection conn)
+        {
+            int id = 0;
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "select * from GameInformation where timeGameEnded = " + timeString;
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    int.TryParse(reader["gameID"].ToString(), out id);
+                }
+            }
+            return id;
+
+        }
+    }
+}

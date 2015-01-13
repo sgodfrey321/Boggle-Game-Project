@@ -1,0 +1,4 @@
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\DBTesting\bin\Debug\DBTesting.dll
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\DBTesting\bin\Debug\DBTesting.pdb
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\DBTesting\obj\Debug\DBTesting.dll
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\DBTesting\obj\Debug\DBTesting.pdb

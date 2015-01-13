@@ -1,0 +1,5 @@
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\Resources\bin\Debug\Resources.dll.config
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\Resources\bin\Debug\Resources.dll
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\Resources\bin\Debug\Resources.pdb
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\Resources\obj\Debug\Resources.dll
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\Resources\obj\Debug\Resources.pdb

@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HTMLwriter
+{
+    public class HTMLCreator
+    {
+        public HTMLCreator()
+        {
+
+        }
+        public string webpageRequestResponse()
+        {
+            string response = "HTTP/1.1 200 OK\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n";
+            return response;
+        }
+        public string emptyLineSend()
+        {
+            string emptyLine = "\r\n";
+            return emptyLine;
+        }
+        public string sendHTML()
+        {
+            string htmlToSend = "<h1>HELLO</h1>";
+            return htmlToSend;
+        }
+    }
+}
