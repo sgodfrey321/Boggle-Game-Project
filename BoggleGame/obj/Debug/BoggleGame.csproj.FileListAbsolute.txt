@@ -1,0 +1,7 @@
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleGame\bin\Debug\BoggleGame.dll
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleGame\bin\Debug\BoggleGame.pdb
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleGame\bin\Debug\BoggleBoard.dll
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleGame\bin\Debug\BoggleBoard.pdb
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleGame\obj\Debug\BoggleGame.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleGame\obj\Debug\BoggleGame.dll
+\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\PS10\BoggleGame\obj\Debug\BoggleGame.pdb
